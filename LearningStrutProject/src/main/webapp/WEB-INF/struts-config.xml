@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+	"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+<!-- The <form-bean> element declares the symbolic name and class of a form bean object: -->
+	<form-beans>
+		<form-bean name="selectBeerForm" 
+		type="com.andrius.project.LearningStrutProject.formbean.BeerSelectForm">
+		</form-bean>
+	</form-beans>
+
+ <action-mappings>
+ <!-- An <action> element maps the URL path to the controller class; notice that
+ the .do extension for the path is NOT included in the Struts configuration.-->
+ 
+ <!-- The <action> also associate a form bean with the action. This is specified
+ 	by the symbolic FORM-BEAN NAME. Strut will create this bean and store it in
+ 	the specified scope(request). If validation occurs and errors are returned
+ 	from the validate() method, then the input attribute declares the View
+ 	responsible for displaying the error message; this is usually the
+ 	form that submitted this action. -->
+ 	
+ <action path="/SelectBeer"
+ 	type="com.andrius.project.LearningStrutProject.actionobject.BeerSelectAction"
+ 	name="selectBeerForm" scope="request" validate="true" 
+ 	input="/form.jsp">
+	
+	<!-- The <forward> element creates a mapping between the symbolic view name,
+	used by the Action object, and the physical path to the view component. -->
+	<forward name="show_results" path="/result.jsp"/>	
+	
+ 	</action>
+</action-mappings>
+
+<message-resources parameter="ApplicationResources"/>
+</struts-config>	
