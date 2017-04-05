@@ -2,8 +2,37 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <display-name>LearningStrutProject</display-name>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>form.jsp</welcome-file>
         </welcome-file-list>
+        
+        <!-- Define the controller servlet -->
+        <servlet>
+        <!-- Naming the ActionServlet "FrontController" is not required, but 
+        it will help remind you of its purpose in the app -->
+        	<servlet-name>FrontController</servlet-name>
+        	<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+         
+        <!-- Name the struts configuration file -->
+        <init-param>
+        	<param-name>config</param-name>
+        	<!-- The "config" init param tells the ActionServlet where
+        	to find the Struts config file -->
+        	<param-value>/WEB-INF/struts-config.xml</param-value>
+        </init-param>
+        
+        <!-- Guarantee that this servlet is loaded on startup The ActionServlet has 
+        complex init method; you better load this servlet at startup -->
+        <load-on-startup>1</load-on-startup>
+        </servlet>
+        
+        <!-- The Struts controller mapping -->
+        <servlet-mapping>
+        	<servlet-name>FrontController</servlet-name>
+        	<!-- This one servlet is going to handle All of this app's request
+        	(assuming you name the request URLs with a ".do" extension). -->
+        	<url-pattern>*.do</url-pattern>
+        </servlet-mapping>
+        <!-- END: The Struts controller mapping -->
         
         <jsp-config>
         	<jsp-property-group>
@@ -24,7 +53,7 @@
         <security-constraint>
         	<web-resource-collection>
         		<web-resource-name>Security</web-resource-name>
-        		<url-pattern>/index.jsp</url-pattern>
+        		<url-pattern>/form.jsp</url-pattern>
         		<http-method>GET</http-method>
         		<http-method>POST</http-method>
         	</web-resource-collection>
